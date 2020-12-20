@@ -1,0 +1,368 @@
+/* apply a natural box layout model to all elements, but allowing components to change */
+
+html {
+    box-sizing: border-box;
+    font-size: 62.5%;
+    /* Reset PX-REM: 1rem = 10px */
+    /* background-color: rgb(88, 88, 88);
+    !"DARK MODE" TEMPORAL */
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    /* Copiado de Google Fonts al momento de copiar el LINK para CSS */
+    font-size: 1.6rem;
+    line-height: 2;
+}
+
+
+/* ? Globales */
+
+.contenedor {
+    max-width: 1200px;
+    width: 95%;
+    margin: 0 auto;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    /* Tipo de fuente para H1, H2, H3 y H4 */
+    font-family: 'PT Sans', sans-serif;
+    /* Copiado de Google Fonts al momento de copiar el LINK para CSS */
+}
+
+
+/* Tamaños de fuente para H1, H2, H3, H4 */
+
+h1 {
+    font-size: 4.8rem;
+}
+
+h2 {
+    font-size: 4rem;
+    line-height: 1.2;
+}
+
+h3 {
+    font-size: 3.2rem;
+}
+
+h4 {
+    font-size: 2.8rem;
+}
+
+img {
+    max-width: 100%;
+    /* Para que las imagenes se adapten en su contenedor */
+}
+
+
+/** Utilidades **/
+
+.centrar-texto {
+    text-align: center;
+}
+
+.no-margin {
+    margin: 0;
+}
+
+
+/* ? Grid */
+
+@media (min-width: 768px) {
+    .grid {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+    .centrar-columnas {
+        justify-content: center;
+    }
+    .columnas-4 {
+        flex: 0 0 calc(33.3% - 1rem);
+    }
+    .columnas-6 {
+        flex: 0 0 calc(50% - 1rem);
+    }
+    .columnas-8 {
+        flex: 0 0 calc(66.6% - 1rem);
+    }
+    .columnas-10 {
+        flex: 0 0 calc(83.3% - 1rem);
+        /* Aquí calculé para hacer el formulario teniendo en cuenta que son 12 columnas por lo general, entonces 100% entre 12 columnas da 8,3333... Luego eso lo multipliqué por 10 columnas y me da los 83.3% que asigné */
+    }
+    .columnas-12 {
+        flex: 0 0 100%;
+    }
+}
+
+
+/* ? Botones */
+
+.btn {
+    display: block;
+    text-align: center;
+    padding: 1rem 3rem;
+    margin: 2rem 0;
+    color: #ffffff;
+    text-decoration: none;
+    font-family: 'PT Sans', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 2rem;
+    flex: 0 0 100%;
+    border-radius: 3rem;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+@media (min-width: 768px) {
+    .btn {
+        display: inline-block;
+        flex: 0 0 auto;
+    }
+}
+
+.btn-primario {
+    background-color: #000000;
+}
+
+.btn-secundario {
+    background-color: #784d3c;
+}
+
+
+/* ? Header */
+
+@media (min-width: 768px) {
+    .barra {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+.site-header {
+    background-image: url(../img/banner.jpg);
+    background-repeat: no-repeat;
+    /* Por default todas las imágenes se repiten */
+    background-position: center center;
+    background-size: cover;
+    /* Para llenar tanto la altura como el ancho */
+    height: 60rem;
+    /* 600px de altura */
+}
+
+.barra h1:hover {
+    transition: 1s;
+    transform: scale(1.2);
+}
+
+.site-header a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.site-header h1 {
+    text-align: center;
+    font-weight: 400;
+}
+
+.site-header h1 span {
+    font-weight: 700;
+}
+
+
+/* ? Navegación */
+
+.navegacion a {
+    text-align: center;
+    display: block;
+    font-size: 1.8rem;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+@media (min-width: 668px) {
+    .navegacion a {
+        display: inline;
+        margin-right: 2rem;
+    }
+    .naevagcion a:last-of-type {
+        margin: 0;
+    }
+}
+
+
+/* ? Header Texto */
+
+.texto-header {
+    color: #ffffff;
+    text-align: center;
+    margin-top: 5rem;
+}
+
+@media (min-width: 768px) {
+    .texto-header {
+        margin-top: 15rem;
+    }
+}
+
+.texto-header p {
+    font-size: 2.2rem;
+}
+
+
+/* ? Contenido Principal HOME */
+
+.contenido-principal {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.blog,
+.cursos {
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 100%;
+    /* Las 3 propiedades y con sus respectivos valores que escribimos arriba se podría también escribir así: 
+        flex: 0 0 100%;
+    El primer valor vendría siendo el GROW, luego SHRINK y luego BASIS
+    */
+}
+
+.cursos {
+    order: -1;
+}
+
+@media (min-width: 768px) {
+    .contenido-principal {
+        justify-content: space-between;
+    }
+    .blog {
+        flex-basis: 66.6%;
+    }
+    .cursos {
+        flex-basis: calc(33.3% - 4rem);
+        order: 2;
+    }
+}
+
+
+/* ? Opcional  */
+
+.entrada-blog {
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #e1e1e1;
+}
+
+.entrada-blog:last-of-type {
+    border: none;
+}
+
+
+/* ? Cursos Sidebar */
+
+.cursos-lista {
+    padding: 0;
+    list-style: none;
+}
+
+.curso {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid #e1e1e1;
+}
+
+.curso:last-of-type {
+    border-bottom: none;
+}
+
+.curso p {
+    font-family: 'PT Sans', sans-serif;
+    font-weight: 700;
+    font-size: 2rem;
+}
+
+.curso p span,
+.curso p.descripcion {
+    font-weight: 400;
+}
+
+
+/* ? Footer */
+
+.site-footer {
+    background-color: #000000;
+    padding: 3rem;
+    margin-top: 4rem;
+}
+
+.site-footer p {
+    color: #ffffff;
+    font-size: 4rem;
+    font-weight: 400;
+    font-family: 'PT Sans', sans-serif;
+    text-align: center;
+}
+
+.site-footer p span {
+    font-weight: 700;
+}
+
+
+/* ? Contacto */
+
+.formulario-contacto {
+    background-color: #ffffff;
+    padding: 5rem;
+    border-radius: 3rem;
+}
+
+@media (min-width: 768px) {
+    .formulario-contacto {
+        margin-top: -10rem;
+        /* Puse este valor para lograr montar el formulario más arriba encima de la imagen */
+    }
+}
+
+.formulario-contacto .campo {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+.formulario-contacto .campo label {
+    /* Por lo general recomiendan no abusar de selectores y agregar un máximo de 3 como esta línea de arriba */
+    flex: 0 0 8rem;
+}
+
+.formulario-contacto .campo input:not([type=submit]),
+.formulario-contacto textarea {
+    flex: 1;
+    /* Hice esto para poder darle crecimiento a los INPUT excepto al botón submit */
+    border: 1px solid #e1e1e1;
+    padding: 1rem;
+}
+
+.formulario-contacto textearea {
+    height: 20rem;
+}
+
+.formulario-contacto .enviar {
+    display: flex;
+    justify-content: flex-end;
+}
